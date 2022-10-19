@@ -2,7 +2,6 @@ package io.hiulesson.clientes.rest;
 
 import io.hiulesson.clientes.exception.UsuarioCadastroException;
 import io.hiulesson.clientes.model.entity.Usuario;
-import io.hiulesson.clientes.model.repository.UsuarioRepository;
 import io.hiulesson.clientes.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -4,10 +4,15 @@ import io.hiulesson.clientes.model.entity.Cliente;
 import io.hiulesson.clientes.model.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -17,6 +22,11 @@ public class ClienteController {
     @Autowired
     public ClienteController(ClienteRepository repository){
         this.repository = repository;
+    }
+
+    @GetMapping
+    public List<Cliente> getAll(){
+        return repository.findAll();
     }
 
     @PostMapping
@@ -47,7 +57,8 @@ public class ClienteController {
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atualizar( @PathVariable Integer id, @RequestBody @Valid Cliente clienteAtualizado ){
+    public void atualizar( @PathVariable Integer id,
+                           @RequestBody @Valid Cliente clienteAtualizado ){
         repository
                 .findById(id)
                 .map( cliente -> {
